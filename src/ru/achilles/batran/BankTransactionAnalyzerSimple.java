@@ -3,8 +3,7 @@ package ru.achilles.batran;
 import java.io.IOException;
 import java.nio.file.*;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BankTransactionAnalyzerSimple {
 
@@ -12,16 +11,17 @@ public class BankTransactionAnalyzerSimple {
 
     public static void main(String[] args) throws IOException {
 
+        final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
+
         final Path path = Paths.get(RESOURCES);
         final List<String> lines = Files.readAllLines(path);
-        double total = 0d;
-        for (final String line: lines) {
-            final String[] columns = line.split(",");
-            final double amount = Double.parseDouble(columns[1]);
-            total += amount;
-        }
 
-        System.out.println("The total for all transaction is " + total);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
+
+        System.out.println("The total for all transaction is " +
+                calculateTotalAmount(bankTransactions));
+        System.out.println("Transactions in January " +
+                selectInMonth(bankTransactions, Month.JANUARY));
     }
 
     public static double calculateTotalAmount(final List<BankTransaction> bankTransactions) {
