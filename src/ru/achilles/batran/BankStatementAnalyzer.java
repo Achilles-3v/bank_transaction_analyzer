@@ -5,12 +5,12 @@ import java.nio.file.*;
 import java.time.Month;
 import java.util.*;
 
-public class BankTransactionAnalyzer {
+public class BankStatementAnalyzer {
 
     private static final String RESOURCES = "src/ru/achilles/resources/data01.csv";
-    private static final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
 
-    public static void main(String[] args) throws IOException {
+    public static void analyze(final BankStatementParser bankStatementParser)
+            throws IOException {
 
         final Path path = Paths.get(RESOURCES);
         final List<String> lines = Files.readAllLines(path);
