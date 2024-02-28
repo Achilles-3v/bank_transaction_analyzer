@@ -2,6 +2,8 @@ package ru.achilles.batran;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankTransactionAnalyzerSimple {
@@ -20,5 +22,25 @@ public class BankTransactionAnalyzerSimple {
         }
 
         System.out.println("The total for all transaction is " + total);
+    }
+
+    public static double calculateTotalAmount(final List<BankTransaction> bankTransactions) {
+        double total = 0d;
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            total += bankTransaction.getAmount();
+        }
+        return total;
+    }
+
+    public static List<BankTransaction> selectInMonth(
+            final List<BankTransaction> bankTransactions, final Month month) {
+
+        final List<BankTransaction> bankTransactionsMonth = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if (bankTransaction.getDate().getMonth() == month) {
+                bankTransactionsMonth.add(bankTransaction);
+            }
+        }
+        return bankTransactionsMonth;
     }
 }
