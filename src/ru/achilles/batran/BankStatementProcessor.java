@@ -29,7 +29,7 @@ public class BankStatementProcessor {
         return total;
     }
 
-    public double calculateTotalInCategory(final String category) {
+    public double calculateTotalForCategory(final String category) {
         double total = 0d;
         for (final BankTransaction bankTransaction : bankTransactions) {
             if (bankTransaction.getDescription().equals(category)) {
