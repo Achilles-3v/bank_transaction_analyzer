@@ -1,4 +1,4 @@
-package ru.achilles.batran;
+package main.java;
 
 import java.util.List;
 

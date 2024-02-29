@@ -1,4 +1,4 @@
-package ru.achilles.batran;
+package main.java;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -7,7 +7,7 @@ import java.util.*;
 
 public class BankStatementAnalyzer {
 
-    private static final String RESOURCES = "src/ru/achilles/resources/data01.csv";
+    private static final String RESOURCES = "src/resources/data01.csv";
 
     public static void analyze(final BankStatementParser bankStatementParser)
             throws IOException {
