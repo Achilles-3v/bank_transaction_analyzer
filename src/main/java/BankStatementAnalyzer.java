@@ -17,8 +17,12 @@ public class BankStatementAnalyzer {
 
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
         final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
-        final List<BankTransaction> transactions =
-                bankStatementProcessor.findTransaction(new BankTransactionIsInFebruaryAndExpensive());
+        /*final List<BankTransaction> transactions =
+                bankStatementProcessor.findTransaction(new BankTransactionIsInFebruaryAndExpensive());*/
+
+        final List<BankTransaction> transactions = bankStatementProcessor.findTransaction(bankTransaction ->
+                bankTransaction.getDate().getMonth() == Month.FEBRUARY &&
+                bankTransaction.getAmount() >= 1000);
 
         collectSummary(bankStatementProcessor);
     }
